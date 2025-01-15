@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_scope_privilege">
+    <sys_scope_privilege action="INSERT_OR_UPDATE">
+        <operation>execute</operation>
+        <source_scope display_value="Leave Management System">92ba9c01514312107f447a6bb0e5cfa8</source_scope>
+        <status>allowed</status>
+        <sys_class_name>sys_scope_privilege</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-01-12 09:52:54</sys_created_on>
+        <sys_id>eda3c3e9e10312107f442d9885070ac4</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>GlideRecord.insert</sys_name>
+        <sys_package display_value="Leave Management System" source="x_snc_leave_mana_0">92ba9c01514312107f447a6bb0e5cfa8</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Leave Management System">92ba9c01514312107f447a6bb0e5cfa8</sys_scope>
+        <sys_update_name>sys_scope_privilege_eda3c3e9e10312107f442d9885070ac4</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-01-12 09:52:54</sys_updated_on>
+        <target_name>GlideRecord.insert</target_name>
+        <target_scope display_value="Global">global</target_scope>
+        <target_type>scriptable</target_type>
+    </sys_scope_privilege>
+</record_update>

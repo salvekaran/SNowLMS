@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_script_client">
+    <sys_script_client action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <applies_extended>false</applies_extended>
+        <condition/>
+        <description/>
+        <field>end_date</field>
+        <global>true</global>
+        <isolate_script>true</isolate_script>
+        <messages/>
+        <name>set duration</name>
+        <order/>
+        <script><![CDATA[function onChange(control, oldValue, newValue, isLoading, isTemplate) {
+  if (isLoading || newValue === '') {
+    return;
+  }
+
+  var startDate = '2025-01-14';//g_form.getValue('start_date');
+  var endDate = '2025-01-27'; //g_form.getValue('end_date');
+
+  
+
+  var ga = new GlideAjax('GlideDateTimeUtils'); 
+  ga.addParam('sysparm_name', 'getDateTimeDiff'); 
+  ga.addParam('sysparm_start', startDate); 
+  ga.addParam('sysparm_end', endDate); 
+  ga.getXML(getDuration);
+
+  function getDuration(response) {
+    var answer = response.responseXML.documentElement.getAttribute("answer");
+    g_form.setValue('duration', answer); 
+  }
+}]]></script>
+        <sys_class_name>sys_script_client</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-01-13 17:10:06</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>73fca1cad90f12107f44dcbbfc56da6f</sys_id>
+        <sys_mod_count>11</sys_mod_count>
+        <sys_name>set duration</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="Leave Management System" source="x_snc_leave_mana_0">92ba9c01514312107f447a6bb0e5cfa8</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Leave Management System">92ba9c01514312107f447a6bb0e5cfa8</sys_scope>
+        <sys_update_name>sys_script_client_73fca1cad90f12107f44dcbbfc56da6f</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-01-13 19:20:47</sys_updated_on>
+        <table>x_snc_leave_mana_0_leave_request</table>
+        <type>onChange</type>
+        <ui_type>10</ui_type>
+        <view/>
+    </sys_script_client>
+</record_update>

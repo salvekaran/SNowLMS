@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_script">
+    <sys_script action="INSERT_OR_UPDATE">
+        <abort_action>false</abort_action>
+        <access>package_private</access>
+        <action_delete>false</action_delete>
+        <action_insert>true</action_insert>
+        <action_query>false</action_query>
+        <action_update>false</action_update>
+        <active>true</active>
+        <add_message>false</add_message>
+        <advanced>true</advanced>
+        <change_fields>false</change_fields>
+        <client_callable>false</client_callable>
+        <collection>sys_user</collection>
+        <condition/>
+        <description/>
+        <execute_function>false</execute_function>
+        <filter_condition/>
+        <is_rest>false</is_rest>
+        <message/>
+        <name>Create Leave Bucket</name>
+        <order>100</order>
+        <priority>100</priority>
+        <rest_method/>
+        <rest_method_text/>
+        <rest_service/>
+        <rest_service_text/>
+        <rest_variables/>
+        <role_conditions/>
+        <script><![CDATA[(function executeRule(current, previous /*null when async*/) {  
+
+    // Add your code here  
+    var gr = new GlideRecord('x_snc_leave_mana_0_leave_calculator');  
+    gr.addQuery('country.name', current.location.country);  
+    gr.query();  
+    
+    if (gr.next()) {  
+        if (gr.leave_assignment == 'yearly') {  
+            var gdt = new GlideDateTime();  
+            var currentMonth = gdt.getMonthLocalTime() + 1; // Adjust for 1-12 range  
+            var monthsLeft = 12 - currentMonth;  
+            var perMonth = gr.leaves / 12;  
+            var totalLeaves = perMonth * monthsLeft;  
+
+            var leaveBucket = new GlideRecord('x_snc_leave_mana_0_leave_bucket');  
+            leaveBucket.initialize();  
+            leaveBucket.type = gr.type;  
+            leaveBucket.accrued = totalLeaves;  
+            leaveBucket.balance = totalLeaves;  
+            leaveBucket.taken = 0;  
+            leaveBucket.employee = current.sys_id;  
+            leaveBucket.insert();  
+        } else if (gr.leave_assignment == 'monthly') {  
+            var perMonthM = gr.leaves / 12;  
+
+            var leaveBucketM = new GlideRecord('x_snc_leave_mana_0_leave_bucket');  
+            leaveBucketM.initialize();  
+            leaveBucketM.type = gr.type;  
+            leaveBucketM.accrued = perMonthM;  
+            leaveBucketM.balance = perMonthM;  
+            leaveBucketM.taken = 0;  
+            leaveBucketM.employee = current.sys_id;  
+            leaveBucketM.insert();  
+        }  
+    }  
+
+})(current, previous);]]></script>
+        <sys_class_name>sys_script</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-01-12 09:52:40</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>db134ba9e10312107f442d9885070a1f</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Create Leave Bucket</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="Leave Management System" source="x_snc_leave_mana_0">92ba9c01514312107f447a6bb0e5cfa8</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Leave Management System">92ba9c01514312107f447a6bb0e5cfa8</sys_scope>
+        <sys_update_name>sys_script_db134ba9e10312107f442d9885070a1f</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-01-12 09:52:40</sys_updated_on>
+        <template/>
+        <when>async_always</when>
+    </sys_script>
+    <sys_translated_text action="delete_multiple" query="documentkey=db134ba9e10312107f442d9885070a1f"/>
+    <sys_es_latest_script action="INSERT_OR_UPDATE">
+        <id>db134ba9e10312107f442d9885070a1f</id>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-01-12 09:52:39</sys_created_on>
+        <sys_id>4a9383e9e10312107f442d9885070a34</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-01-12 09:52:39</sys_updated_on>
+        <table>sys_script</table>
+        <use_es_latest>true</use_es_latest>
+    </sys_es_latest_script>
+</record_update>

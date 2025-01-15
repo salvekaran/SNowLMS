@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element db_object_id="904d9005514312107f447a6bb0e5cf7b" label="Leave Request" max_length="40" name="x_snc_leave_mana_0_leave_request" type="collection">
+        <element choice="1" label="Leave Type" max_length="40" name="leave_type" type="choice">
+            <choice>
+                <element inactive_on_update="false" label="WFM" sequence="3" value="wfm"/>
+                <element inactive_on_update="false" label="Casual Leave" sequence="0" value="casual_leave"/>
+                <element inactive_on_update="false" label="Earned Leave" sequence="1" value="earned_leave"/>
+                <element inactive_on_update="false" label="Sick Leave" sequence="2" value="sick_leave"/>
+            </choice>
+        </element>
+        <element label="Balance" max_length="40" name="balance" type="float"/>
+        <element label="Duration" max_length="40" name="duration" type="float"/>
+        <element label="Start Date" max_length="40" name="start_date" type="glide_date"/>
+        <element label="End Date" max_length="40" name="end_date" type="glide_date"/>
+        <element choice="3" default="open" label="Status" max_length="40" name="status" type="choice">
+            <choice>
+                <element inactive_on_update="false" label="Cancelled" sequence="2" value="cancelled"/>
+                <element inactive_on_update="false" label="Open" sequence="0" value="open"/>
+                <element inactive_on_update="false" label="Submitted" sequence="1" value="submitted"/>
+            </choice>
+        </element>
+        <element label="Accrued" max_length="40" name="accrued" type="float"/>
+        <element label="Taken" max_length="40" name="taken" type="float"/>
+        <element choice="3" default="not_yet_requested" label="Approval" max_length="40" name="approval" type="choice">
+            <choice>
+                <element inactive_on_update="false" label="Not Yet Requested" sequence="1" value="not_yet_requested"/>
+                <element inactive_on_update="false" label="Rejected" sequence="2" value="rejected"/>
+                <element inactive_on_update="false" label="Requested" sequence="3" value="requested"/>
+                <element inactive_on_update="false" label="Approved" sequence="0" value="approved"/>
+            </choice>
+        </element>
+        <element label="Half Day" max_length="40" name="half_day" type="boolean"/>
+        <element label="Comments" max_length="50" name="comments" type="string"/>
+        <element default="javascript:gs.getUserID();" dynamic_default_value="90d1921e5f510100a9ad2572f2b477fe" label="Requested By" max_length="32" name="requested_by" reference="sys_user" type="reference" use_dynamic_default="true"/>
+        <element attributes="edge_encryption_enabled=true" default="javascript:global.getNextObjNumberPadded();" label="Number" max_length="40" name="number" read_only="true" type="string"/>
+        <index name="index">
+            <element name="requested_by"/>
+        </index>
+    </element>
+</database>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element db_object_id="f234a84d514312107f447a6bb0e5cf8e" label="Leave Calculator" max_length="40" name="x_snc_leave_mana_0_leave_calculator" type="collection">
+        <element label="Leaves" max_length="40" name="leaves" type="float"/>
+        <element attributes="edge_encryption_enabled=true" default="javascript:global.getNextObjNumberPadded();" label="Number" max_length="40" name="number" read_only="true" type="string"/>
+        <element label="End Month" max_length="40" name="end_month" type="string"/>
+        <element choice="3" label="Leave Assignment" max_length="40" name="leave_assignment" type="choice">
+            <choice>
+                <element inactive_on_update="false" label="Monthly" sequence="1" value="monthly"/>
+                <element inactive_on_update="false" label="Yearly" sequence="0" value="yearly"/>
+            </choice>
+        </element>
+        <element choice="3" choice_field="leave_type" choice_table="x_snc_leave_mana_0_leave_request" label="Leave Type" max_length="40" name="leave_type" type="string">
+            <choice/>
+        </element>
+        <element label="Country" max_length="32" name="country" reference="core_country" type="reference"/>
+        <element label="Starting Month" max_length="40" name="starting_month" type="string"/>
+        <index name="index">
+            <element name="country"/>
+        </index>
+    </element>
+</database>

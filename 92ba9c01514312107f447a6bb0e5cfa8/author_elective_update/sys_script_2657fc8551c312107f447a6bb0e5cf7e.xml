@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_script">
+    <sys_script action="DELETE">
+        <abort_action>false</abort_action>
+        <access>package_private</access>
+        <action_delete>false</action_delete>
+        <action_insert>true</action_insert>
+        <action_query>false</action_query>
+        <action_update>true</action_update>
+        <active>true</active>
+        <add_message>false</add_message>
+        <advanced>true</advanced>
+        <change_fields>false</change_fields>
+        <client_callable>false</client_callable>
+        <collection>sys_user</collection>
+        <condition/>
+        <description/>
+        <execute_function>false</execute_function>
+        <filter_condition table="sys_user">employee_numberISNOTEMPTY^EQ<item endquery="false" field="employee_number" goto="false" newquery="false" operator="ISNOTEMPTY" or="false" value=""/>
+            <item endquery="true" field="" goto="false" newquery="false" operator="=" or="false" value=""/>
+        </filter_condition>
+        <is_rest>false</is_rest>
+        <message/>
+        <name>Create Leave Bucket</name>
+        <order>100</order>
+        <priority>100</priority>
+        <rest_method/>
+        <rest_method_text/>
+        <rest_service/>
+        <rest_service_text/>
+        <rest_variables/>
+        <role_conditions/>
+        <script><![CDATA[function executeRule(current, previous /*null when async*/) {
+
+	// Add your code here
+var gr= new GlideRecord('x_snc_leave_mana_0_leave_calculator');
+gr.addQuery('country.name',current.location.country);
+gr.query();
+if (gr.next)
+{
+ if (gr.leave_assignment =='yearly')
+{
+		var gdt= new GlideDateTime();
+		var currentMonth = gdt.getMonthLocalTime();
+		var daysLeft = 12 - currentMonth;
+		var perMonth = gr.leaves/12;
+		var totalLeaves = perMonth * monthsLeft;
+
+		var leavebucket= newGliedRecord('x_snc_leave_mana_0_leave_bucket');
+		leavebucket.intialize();
+		leavebucket.type=gr.type;
+		leavebucket. accrued = totalLeaves;
+		leavebucket. balance = totalLeaves;
+		leavebucket. taken = 0;
+		leavebucket.employee =current.sys_id;
+		leavebucket.insert();
+}
+
+	else if (gr.leave_assignment =='monthly')
+	{
+		var perMonthM= gr.leaves /12;
+		
+		var leavebucketm= newGliedRecord('x_snc_leave_mana_0_leave_bucket');
+		leavebucketm.intialize();
+		leavebucketm.type=gr.type;
+		leavebucketm. accrued = perMonthM;
+		leavebucketm. balance = perMonthM;
+		leavebucketm. taken = 0;
+		leavebucketm.employee =current.sys_id;
+		leavebucketm.insert();
+}
+	}
+
+}
+
+(current, previous);]]></script>
+        <sys_class_name>sys_script</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-01-10 10:27:21</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>2657fc8551c312107f447a6bb0e5cf7e</sys_id>
+        <sys_mod_count>3</sys_mod_count>
+        <sys_name>Create Leave Bucket</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="Leave Management System" source="x_snc_leave_mana_0">92ba9c01514312107f447a6bb0e5cfa8</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Leave Management System">92ba9c01514312107f447a6bb0e5cfa8</sys_scope>
+        <sys_update_name>sys_script_2657fc8551c312107f447a6bb0e5cf7e</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-01-10 11:41:42</sys_updated_on>
+        <template/>
+        <when>async_always</when>
+    </sys_script>
+    <sys_translated_text action="DELETE" query="documentkey=2657fc8551c312107f447a6bb0e5cf7e"/>
+    <sys_es_latest_script action="DELETE">
+        <id>2657fc8551c312107f447a6bb0e5cf7e</id>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-01-10 10:27:48</sys_created_on>
+        <sys_id>d578f00951c312107f447a6bb0e5cfbe</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-01-10 10:27:48</sys_updated_on>
+        <table>sys_script</table>
+        <use_es_latest>true</use_es_latest>
+    </sys_es_latest_script>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="Leave Management System">92ba9c01514312107f447a6bb0e5cfa8</application>
+        <file_path/>
+        <instance_id>17894e06c33a1a54d7299dcd2b0131a3</instance_id>
+        <instance_name>nowlearning-nlinst02349907-0001</instance_name>
+        <name>sys_script_2657fc8551c312107f447a6bb0e5cf7e</name>
+        <payload>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;record_update sys_domain="global" table="sys_script"&gt;&lt;sys_script action="INSERT_OR_UPDATE"&gt;&lt;abort_action&gt;false&lt;/abort_action&gt;&lt;access&gt;package_private&lt;/access&gt;&lt;action_delete&gt;false&lt;/action_delete&gt;&lt;action_insert&gt;true&lt;/action_insert&gt;&lt;action_query&gt;false&lt;/action_query&gt;&lt;action_update&gt;true&lt;/action_update&gt;&lt;active&gt;true&lt;/active&gt;&lt;add_message&gt;false&lt;/add_message&gt;&lt;advanced&gt;true&lt;/advanced&gt;&lt;change_fields&gt;false&lt;/change_fields&gt;&lt;client_callable&gt;false&lt;/client_callable&gt;&lt;collection&gt;sys_user&lt;/collection&gt;&lt;condition/&gt;&lt;description/&gt;&lt;execute_function&gt;false&lt;/execute_function&gt;&lt;filter_condition table="sys_user"&gt;employee_numberISNOTEMPTY^EQ&lt;item endquery="false" field="employee_number" goto="false" newquery="false" operator="ISNOTEMPTY" or="false" value=""/&gt;&lt;item endquery="true" field="" goto="false" newquery="false" operator="=" or="false" value=""/&gt;&lt;/filter_condition&gt;&lt;is_rest&gt;false&lt;/is_rest&gt;&lt;message/&gt;&lt;name&gt;Create Leave Bucket&lt;/name&gt;&lt;order&gt;100&lt;/order&gt;&lt;priority&gt;100&lt;/priority&gt;&lt;rest_method/&gt;&lt;rest_method_text/&gt;&lt;rest_service/&gt;&lt;rest_service_text/&gt;&lt;rest_variables/&gt;&lt;role_conditions/&gt;&lt;script&gt;&lt;![CDATA[function executeRule(current, previous /*null when async*/) {
+
+	// Add your code here
+var gr= new GlideRecord('x_snc_leave_mana_0_leave_calculator');
+gr.addQuery('country.name',current.location.country);
+gr.query();
+if (gr.next)
+{
+ if (gr.leave_assignment =='yearly')
+{
+		var gdt= new GlideDateTime();
+		var currentMonth = gdt.getMonthLocalTime();
+		var daysLeft = 12 - currentMonth;
+		var perMonth = gr.leaves/12;
+		var totalLeaves = perMonth * monthsLeft;
+
+		var leavebucket= newGliedRecord('x_snc_leave_mana_0_leave_bucket');
+		leavebucket.intialize();
+		leavebucket.type=gr.type;
+		leavebucket. accrued = totalLeaves;
+		leavebucket. balance = totalLeaves;
+		leavebucket. taken = 0;
+		leavebucket.employee =current.sys_id;
+		leavebucket.insert();
+}
+
+	else if (gr.leave_assignment =='monthly')
+	{
+		var perMonthM= gr.leaves /12;
+		
+		var leavebucketm= newGliedRecord('x_snc_leave_mana_0_leave_bucket');
+		leavebucketm.intialize();
+		leavebucketm.type=gr.type;
+		leavebucketm. accrued = perMonthM;
+		leavebucketm. balance = perMonthM;
+		leavebucketm. taken = 0;
+		leavebucketm.employee =current.sys_id;
+		leavebucketm.insert();
+}
+	}
+
+}
+
+(current, previous);]]&gt;&lt;/script&gt;&lt;sys_class_name&gt;sys_script&lt;/sys_class_name&gt;&lt;sys_created_by&gt;admin&lt;/sys_created_by&gt;&lt;sys_created_on&gt;2025-01-10 10:27:21&lt;/sys_created_on&gt;&lt;sys_domain&gt;global&lt;/sys_domain&gt;&lt;sys_domain_path&gt;/&lt;/sys_domain_path&gt;&lt;sys_id&gt;2657fc8551c312107f447a6bb0e5cf7e&lt;/sys_id&gt;&lt;sys_mod_count&gt;3&lt;/sys_mod_count&gt;&lt;sys_name&gt;Create Leave Bucket&lt;/sys_name&gt;&lt;sys_overrides/&gt;&lt;sys_package display_value="Leave Management System" source="x_snc_leave_mana_0"&gt;92ba9c01514312107f447a6bb0e5cfa8&lt;/sys_package&gt;&lt;sys_policy/&gt;&lt;sys_scope display_value="Leave Management System"&gt;92ba9c01514312107f447a6bb0e5cfa8&lt;/sys_scope&gt;&lt;sys_update_name&gt;sys_script_2657fc8551c312107f447a6bb0e5cf7e&lt;/sys_update_name&gt;&lt;sys_updated_by&gt;admin&lt;/sys_updated_by&gt;&lt;sys_updated_on&gt;2025-01-10 11:41:42&lt;/sys_updated_on&gt;&lt;template/&gt;&lt;when&gt;async_always&lt;/when&gt;&lt;/sys_script&gt;&lt;sys_translated_text action="delete_multiple" query="documentkey=2657fc8551c312107f447a6bb0e5cf7e"/&gt;&lt;sys_es_latest_script action="INSERT_OR_UPDATE"&gt;&lt;id&gt;2657fc8551c312107f447a6bb0e5cf7e&lt;/id&gt;&lt;sys_created_by&gt;admin&lt;/sys_created_by&gt;&lt;sys_created_on&gt;2025-01-10 10:27:48&lt;/sys_created_on&gt;&lt;sys_id&gt;d578f00951c312107f447a6bb0e5cfbe&lt;/sys_id&gt;&lt;sys_mod_count&gt;0&lt;/sys_mod_count&gt;&lt;sys_updated_by&gt;admin&lt;/sys_updated_by&gt;&lt;sys_updated_on&gt;2025-01-10 10:27:48&lt;/sys_updated_on&gt;&lt;table&gt;sys_script&lt;/table&gt;&lt;use_es_latest&gt;true&lt;/use_es_latest&gt;&lt;/sys_es_latest_script&gt;&lt;/record_update&gt;</payload>
+        <payload_hash>1549784164</payload_hash>
+        <record_name>Create Leave Bucket</record_name>
+        <reverted_from/>
+        <source>16ba9c01514312107f447a6bb0e5cfad</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-01-10 11:41:42</sys_created_on>
+        <sys_id>f759814d510712107f447a6bb0e5cf4d</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>194500525360000001</sys_recorded_at>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-01-10 11:41:42</sys_updated_on>
+        <type>Business Rule</type>
+        <update_guid>fb59814d290712101ad631ce447e854c</update_guid>
+        <update_guid_history>fb59814d290712101ad631ce447e854c:1549784164,ccb8050d40071210a5acf1cbf85beb07:2135083633,5588f0092bc31210469603b496454ec3:1255636850,7e58f00959c31210c654ee30c2fa7835:586369523</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete/>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-01-10 19:30:14</sys_created_on>
+        <sys_db_object display_value="" name="sys_script">sys_script</sys_db_object>
+        <sys_id>5d160aed92724448b9c9b0a5745c5884</sys_id>
+        <sys_metadata>2657fc8551c312107f447a6bb0e5cf7e</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Create Leave Bucket</sys_name>
+        <sys_package display_value="Leave Management System" source="x_snc_leave_mana_0">92ba9c01514312107f447a6bb0e5cfa8</sys_package>
+        <sys_parent display_value="Sys User">0648e9009f3012107f44dab74024abdb</sys_parent>
+        <sys_policy/>
+        <sys_scope display_value="Leave Management System">92ba9c01514312107f447a6bb0e5cfa8</sys_scope>
+        <sys_scope_delete display_value="">89fa97135f79459a98332ad48cbbade9</sys_scope_delete>
+        <sys_update_name>sys_script_2657fc8551c312107f447a6bb0e5cf7e</sys_update_name>
+        <sys_update_version display_value="sys_script_2657fc8551c312107f447a6bb0e5cf7e">f759814d510712107f447a6bb0e5cf4d</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-01-10 19:30:14</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>
